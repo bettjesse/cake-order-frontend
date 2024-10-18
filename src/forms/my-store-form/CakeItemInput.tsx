@@ -1,7 +1,6 @@
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import CakeImage from './CakeImage';
 
@@ -15,10 +14,6 @@ const CakeItemInput = ({ index, removeMenuItem }: CakeItemInputProps) => {
   const { fields: sizeFields, append: appendSize, remove: removeSize } = useFieldArray({
     control,
     name: `cakeItems.${index}.sizeOptions`
-  });
-  const { fields: toppingFields, append: appendTopping, remove: removeTopping } = useFieldArray({
-    control,
-    name: `cakeItems.${index}.toppings`
   });
 
   return (
@@ -50,13 +45,13 @@ const CakeItemInput = ({ index, removeMenuItem }: CakeItemInputProps) => {
         <h4 className="text-md font-semibold">Size Options</h4>
 
         {sizeFields.map((_, sizeIndex) => (
-          <div key={sizeIndex} className="flex gap-4 items-end">
+          <div key={sizeIndex} className="flex flex-col sm:flex-row gap-4 sm:items-end w-full">
             {/* Size input */}
             <FormField
               control={control}
               name={`cakeItems.${index}.sizeOptions.${sizeIndex}.size`}
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="w-full sm:w-1/3">
                   <FormLabel>Size</FormLabel>
                   <FormControl>
                     <Input {...field} placeholder="1Kg" />
@@ -71,7 +66,7 @@ const CakeItemInput = ({ index, removeMenuItem }: CakeItemInputProps) => {
               control={control}
               name={`cakeItems.${index}.sizeOptions.${sizeIndex}.price`}
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="w-full sm:w-1/3">
                   <FormLabel>Price</FormLabel>
                   <FormControl>
                     <Input type="number" {...field} placeholder="200" />
@@ -82,67 +77,25 @@ const CakeItemInput = ({ index, removeMenuItem }: CakeItemInputProps) => {
             />
 
             {/* Button to remove size option */}
-            <Button variant="destructive" type="button" onClick={() => removeSize(sizeIndex)}>
+            <Button
+              variant="destructive"
+              type="button"
+              onClick={() => removeSize(sizeIndex)}
+              className="w-full sm:w-auto"
+            >
               Remove Size
             </Button>
           </div>
         ))}
 
         {/* Button to add new size */}
-        <Button className='space-y-2' type="button" onClick={() => appendSize({ size: '', price: '' })}>
+        <Button className='w-full sm:w-auto mt-2' type="button" onClick={() => appendSize({ size: '', price: '' })}>
           Add Size
         </Button>
       </div>
 
-      {/* Toppings options */}
-      <div className='space-y-2'>
-        <h4 className="text-md font-semibold">Toppings</h4>
-
-        {toppingFields.map((_, toppingIndex) => (
-          <div key={toppingIndex} className="flex gap-4 items-end">
-            {/* Topping name input */}
-            <FormField
-              control={control}
-              name={`cakeItems.${index}.toppings.${toppingIndex}.toppingName`}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Topping</FormLabel>
-                  <FormControl>
-                    <Input {...field} placeholder="Chocolate Chips" />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            {/* Price input for each topping */}
-            <FormField
-              control={control}
-              name={`cakeItems.${index}.toppings.${toppingIndex}.price`}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Price</FormLabel>
-                  <FormControl>
-                    <Input type="number" {...field} placeholder="50" />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            {/* Button to remove topping option */}
-            <Button variant="destructive" type="button" onClick={() => removeTopping(toppingIndex)}>
-              Remove Topping
-            </Button>
-          </div>
-        ))}
-
-        {/* Button to add new topping */}
-        <Button type="button" onClick={() => appendTopping({ toppingName: '', price: '' })}>
-          Add Topping
-        </Button>
-      </div>
-      <CakeImage index = {index}/>
+      {/* Cake Image component */}
+      <CakeImage index={index} />
     </div>
   );
 };

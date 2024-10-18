@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { FormDescription, FormField, FormItem } from "@/components/ui/form";
 import { useFormContext, useFieldArray } from "react-hook-form";
 import CakeItemInput from './CakeItemInput';
-import CakeImage from "./CakeImage";
 
 const CakeItemsForm = () => {
   const { control } = useFormContext();
