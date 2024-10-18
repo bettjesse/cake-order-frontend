@@ -58,7 +58,7 @@ interface ManageStoreFormProps  {
     isLoading: boolean
 
 }
-const ManageStoreForm = ({onSave, isLoading}:ManageStoreFormProps)=> {
+const ManageStoreForm = ({ isLoading}:ManageStoreFormProps)=> {
     const form = useForm<storeFormData>({
         resolver: zodResolver(formSchema),
         defaultValues: {
