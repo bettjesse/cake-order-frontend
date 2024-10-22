@@ -31,7 +31,7 @@ const CakeItemInput = ({ index, removeMenuItem }: Props) => {
             <FormControl>
               <Input
                 {...field}
-                placeholder="Cheese Pizza"
+                placeholder="Vanilla"
                 className="bg-white w-full"
               />
             </FormControl>
@@ -49,7 +49,7 @@ const CakeItemInput = ({ index, removeMenuItem }: Props) => {
               Size <FormMessage />
             </FormLabel>
             <FormControl>
-              <Input {...field} placeholder="8.00" className="bg-white w-full" />
+              <Input {...field} placeholder="large" className="bg-white w-full" />
             </FormControl>
           </FormItem>
         )}
@@ -62,10 +62,10 @@ const CakeItemInput = ({ index, removeMenuItem }: Props) => {
         render={({ field }) => (
           <FormItem className="w-full sm:w-auto">
             <FormLabel className="flex items-center gap-1">
-              Price (£) <FormMessage />
+              Price (Ksh) <FormMessage />
             </FormLabel>
             <FormControl>
-              <Input {...field} placeholder="8.00" className="bg-white w-full" />
+              <Input {...field} placeholder="3000" className="bg-white w-full" />
             </FormControl>
           </FormItem>
         )}

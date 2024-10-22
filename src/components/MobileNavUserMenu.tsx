@@ -10,6 +10,9 @@ const MobileNavUserMenu = () => {
     <Link to = "/user-profile" className=' flex itesm-center hover:text-orange-500'>
         Account
     </Link>
+    <Link to = "/manage-store" className=' flex itesm-center hover:text-orange-500'>
+        Manage store
+    </Link>
     <Button onClick={()=> logout()} className=' hover:bg-gray-500 font-bold px-4 items-center'>
     Log out
     </Button>
