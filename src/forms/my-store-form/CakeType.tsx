@@ -6,24 +6,26 @@ import CakeTypeCheckBox from "./CakeTypeCheckBox";
 const CakeType = () => {
   const { control } = useFormContext();
   return (
-    <div className=" space-y-2">
+    <div className="space-y-2">
       <div>
-        <h2 className="text-2xl font-bold"> Cake Flavours/Types</h2>
+        <h2 className="text-2xl font-bold">Cake Flavours/Types</h2>
         <FormDescription>
-          Select the Flavours that your store sales
+          Select the Flavours that your store sells
         </FormDescription>
       </div>
       <FormField
         control={control}
         name="cakeTypes"
-        render={({ field }) => <FormItem >
-            <div className=" grid md:grid-cols-5 gap-1">
-{cakeTypes.map((cakeType)=> (
-    <CakeTypeCheckBox cakeType= {cakeType} field = {field}/>
-))}
+        render={({ field }) => (
+          <FormItem>
+            <div className="grid md:grid-cols-5 gap-1">
+              {cakeTypes.map((cakeType) => (
+                <CakeTypeCheckBox key={cakeType} cakeType={cakeType} field={field} />
+              ))}
             </div>
-            <FormMessage/>
-        </FormItem>}
+            <FormMessage />
+          </FormItem>
+        )}
       />
     </div>
   );

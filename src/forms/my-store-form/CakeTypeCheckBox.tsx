@@ -10,13 +10,13 @@ interface CakeTypeCheckBokType {
 const CakeTypeCheckBox = ({ cakeType, field }: CakeTypeCheckBokType) => {
     // Memoize the onCheckedChange function to avoid unnecessary re-creation
     const handleCheckedChange = useCallback(
-      (checked: boolean) => {
+      (checked : boolean) => {
         if (checked) {
           // Add the cake type if it's checked and not already in the list
-          field.onChange([...(field.value || []), cakeType]);
+          field.onChange([...field.value, cakeType]);
         } else {
           // Remove the cake type if it's unchecked
-          field.onChange((field.value || []).filter((value: string) => value !== cakeType));
+          field.value.filter((value: string) => value !== cakeType)
         }
       },
       [field, cakeType] // Dependencies: only change when field or cakeType changes
@@ -28,7 +28,7 @@ const CakeTypeCheckBox = ({ cakeType, field }: CakeTypeCheckBokType) => {
       <FormControl>
         <Checkbox
           className="bg-white "
-          checked={(field.value || []).includes(cakeType)} 
+          checked={field.value.includes(cakeType)} 
           onCheckedChange={handleCheckedChange}
         />
       </FormControl>

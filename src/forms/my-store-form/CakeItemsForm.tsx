@@ -7,7 +7,7 @@ import CakeItemInput from './CakeItemInput';
 
 const CakeItemsForm = () => {
   const { control } = useFormContext();
-  const { fields, append, remove } = useFieldArray({ control, name: "cakeItems" });
+  const { fields, append, remove } = useFieldArray({ control, name: "menuItems" });
 
   return (
     <div className="space-y-4">
@@ -16,10 +16,10 @@ const CakeItemsForm = () => {
         <FormDescription>
           Add the cakes you offer with size options and customizable toppings.
         </FormDescription>
-        <FormField control = {control} name= "cakeItems" render = {()=>(
+        <FormField control = {control} name= "menuItems" render = {()=>(
                  <FormItem className=" flex flex-col gap-2">
                     {fields.map((_, index)=>(
-                        <CakeItemInput index = {index} removeMenuItem = {()=> remove(index)}/>
+                        <CakeItemInput key={index} index = {index} removeMenuItem = {()=> remove(index)}/>
                     ))}
 
             </FormItem>
@@ -29,7 +29,7 @@ const CakeItemsForm = () => {
      
 
         {/* Button to add a new cake item */}
-        <Button type="button" onClick={() => append({ name: '', sizeOptions: [{ size: '', price: '' }], toppings: [] })}>
+        <Button className="my-3" type="button" onClick={() => append({ name: "", size:" ", price :""})}>
           Add Cake Item
         </Button>
       </div>
