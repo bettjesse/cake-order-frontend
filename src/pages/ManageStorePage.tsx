@@ -1,10 +1,18 @@
 import ManageStoreForm from "@/forms/my-store-form/ManageStoreForm"
-import { useCreateMyStore } from "@/api/MystoreApi"
+import { useCreateMyStore, useGetMyStore } from "@/api/MystoreApi"
+import { useUpdateMyStore } from "@/api/MystoreApi"
 
 const ManageStorePage = () => {
-  const{createRestaurant, isLoading} = useCreateMyStore()
+  const{createRestaurant, isLoading: isCreateLoading} = useCreateMyStore()
+  const {isLoading: isUpdateLoading, updateStore}= useUpdateMyStore()
+  const {store}= useGetMyStore()
+  const isEditing = !!store
   return (
-   <ManageStoreForm onSave={createRestaurant} isLoading= {isLoading} />
+
+   <ManageStoreForm 
+   store= {store} onSave={ isEditing ? updateStore : createRestaurant}
+    isLoading= {isCreateLoading || isUpdateLoading }
+     />
   )
 }
 
